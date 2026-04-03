@@ -120,6 +120,25 @@ export default function DashboardLayout({ children }) {
             </motion.div>
           </AnimatePresence>
         </div>
+
+        {/* Mobile Bottom Navigation */}
+        <nav className="md:hidden flex h-16 items-center justify-around border-t border-slate-800/60 bg-slate-900/90 backdrop-blur-xl shrink-0 z-50">
+          {navItems.map((item) => (
+            <button
+              key={item.name}
+              onClick={() => setActiveTab(item.name)}
+              className={cn(
+                "flex flex-col items-center justify-center w-full h-full space-y-1 transition-all duration-200",
+                activeTab === item.name
+                  ? "text-primary-400"
+                  : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/30"
+              )}
+            >
+              <item.icon className={cn("h-5 w-5", activeTab === item.name ? "drop-shadow-[0_0_8px_rgba(99,102,241,0.5)]" : "")} />
+              <span className="text-[10px] font-medium">{item.name}</span>
+            </button>
+          ))}
+        </nav>
       </main>
     </div>
   );
